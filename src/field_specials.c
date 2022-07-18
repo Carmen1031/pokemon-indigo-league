@@ -409,7 +409,7 @@ void GiveLeadMonEffortRibbon(void)
 bool8 AreLeadMonEVsMaxedOut(void)
 {
     u8 leadMonIndex = GetLeadMonIndex();
-    if (GetMonEVCount(&gPlayerParty[leadMonIndex]) >= 510)
+    if (GetMonEVCount(&gPlayerParty[leadMonIndex]) >= 1530)
         return TRUE;
     else
         return FALSE;

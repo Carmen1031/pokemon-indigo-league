@@ -2105,7 +2105,7 @@ void CalculateMonStats(struct Pokemon *mon)
     }
     else
     {
-        s32 n = 3 * gBaseStats[species].baseHP + hpIV;
+        s32 n = 3 * gBaseStats[species].baseHP + hpEV;
         newMaxHP = (((n + hpEV / 3) * level) / 100) + level + 18;
     }
 
@@ -4132,17 +4132,17 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                     case 0: // EV_HP
                     case 1: // EV_ATK
                         evCount = GetMonEVCount(mon);
-                        if (evCount >= 510)
+                        if (evCount >= 1530)
                             return TRUE;
                         data = GetMonData(mon, sGetMonDataEVConstants[i], NULL);
-                        if (data < 100)
+                        if (data < 255)
                         {
-                            if (data + itemEffect[idx] > 100)
-                                evDelta = 100 - (data + itemEffect[idx]) + itemEffect[idx];
+                            if (data + itemEffect[idx] > 255)
+                                evDelta = 255 - (data + itemEffect[idx]) + itemEffect[idx];
                             else
                                 evDelta = itemEffect[idx];
-                            if (evCount + evDelta > 510)
-                                evDelta += 510 - (evCount + evDelta);
+                            if (evCount + evDelta > 1530)
+                                evDelta += 1530 - (evCount + evDelta);
                             data += evDelta;
                             SetMonData(mon, sGetMonDataEVConstants[i], &data);
                             CalculateMonStats(mon);
@@ -4316,17 +4316,17 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                     case 2: // EV_SPDEF
                     case 3: // EV_SPATK
                         evCount = GetMonEVCount(mon);
-                        if (evCount >= 510)
+                        if (evCount >= 1530)
                             return TRUE;
                         data = GetMonData(mon, sGetMonDataEVConstants[i + 2], NULL);
-                        if (data < 100)
+                        if (data < 255)
                         {
-                            if (data + itemEffect[idx] > 100)
-                                evDelta = 100 - (data + itemEffect[idx]) + itemEffect[idx];
+                            if (data + itemEffect[idx] > 255)
+                                evDelta = 255 - (data + itemEffect[idx]) + itemEffect[idx];
                             else
                                 evDelta = itemEffect[idx];
-                            if (evCount + evDelta > 510)
-                                evDelta += 510 - (evCount + evDelta);
+                            if (evCount + evDelta > 1530)
+                                evDelta += 1530 - (evCount + evDelta);
                             data += evDelta;
                             SetMonData(mon, sGetMonDataEVConstants[i + 2], &data);
                             CalculateMonStats(mon);
@@ -4594,10 +4594,10 @@ bool8 PokemonItemUseNoEffect(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mo
                     {
                     case 0: // EV_HP
                     case 1: // EV_ATK
-                        if (GetMonEVCount(mon) >= 510)
+                        if (GetMonEVCount(mon) >= 1530)
                             return TRUE;
                         data = GetMonData(mon, sGetMonDataEVConstants[i], NULL);
-                        if (data < 100)
+                        if (data < 255)
                         {
                             idx++;
                             retVal = FALSE;
@@ -4671,10 +4671,10 @@ bool8 PokemonItemUseNoEffect(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mo
                     case 1: // EV_SPEED
                     case 2: // EV_SPDEF
                     case 3: // EV_SPATK
-                        if (GetMonEVCount(mon) >= 510)
+                        if (GetMonEVCount(mon) >= 1530)
                             return TRUE;
                         data = GetMonData(mon, sGetMonDataEVConstants[i + 2], NULL);
-                        if (data < 100)
+                        if (data < 255)
                         {
                             retVal = FALSE;
                             idx++;
